@@ -4,7 +4,10 @@
   "description": "An SSH honeypot which spawns virtual machines to act as a vulnerable server.",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "dev": "tsc && node dist/index.js"
   },
   "author": "Jacek",
   "license": "ISC",
@@ -13,6 +16,8 @@
     "typescript": "^5.5.4"
   },
   "dependencies": {
+    "pino": "^9.3.2",
+    "pino-pretty": "^11.2.2",
     "ssh2": "^1.15.0"
   }
 }
