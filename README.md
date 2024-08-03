@@ -10,7 +10,7 @@ Work in progress! 🚧🚧👷
 - An SSH server is setup on the virtual machine, and port forwarded to the host to an arbitrary local port, where the honeypot will connect to and act as an intermediary between the VM and connecting client.<details><summary>*Why?*</summary>You might ask, why not just port forward and expose the virtual machine directly to the public? An intermediary server is in place so that the actual commands can be logged and allows for a lot more flexibility; for example by rejecting connections if the VM pool is already filled with other connections, or by spawning new VM instances on the fly if required.</details>
 - The intermediary server will spawn or use an existing VM to forward the SSH commands to. If no VM instance is free, the connection will simply be rejected with an "incorrect password" error.
 - The user that the client will connect to on the virtual machine can be configured to be an unprivileged user, or the root user, with root being the default. Changing the default to an unprivileged user would allow for privilege escalation attack attempts to be seen.
-- Commands executed by the client are logged in a directory separated by their IP, with different sessions being a different file.
+- Commands executed by the client are logged in a directory separated by their IP, with different sessions being a different directory.
 
 ## Security concerns considered
 - Network access is disabled by default and only uses a private network specifically isolated to the machine with port forwarding enabled for SSH to prevent the honeypots from being used for nefarious purposes such as botnets, DDoS attacks or spam mail. You can enable networking for the internet at your own risk with some bandwidth throttling options as well.
