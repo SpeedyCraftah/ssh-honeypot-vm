@@ -16,6 +16,7 @@ Work in progress! 🚧🚧👷
 - Network access is disabled by default and only uses a private network specifically isolated to the machine with port forwarding enabled for SSH to prevent the honeypots from being used for nefarious purposes such as botnets, DDoS attacks or spam mail. You can enable networking for the internet at your own risk with some bandwidth throttling options as well.
 - The honeypots can be configured to last a set amount of time per connection before it preempts and kicks the connected client off, acting as if the SSH connection randomly dropped, allowing for other clients to connect to the honeypot. They can also be configured to last as long as possible to allow for long-lived forms of attack to be considered.
 - The VMs CPU usage is monitored, and VMs using too much CPU for an extended period of time will automatically be killed and preempted to prevent the system from locking up from clients running computationally heavy operations.
+- I would personally not recommend using this on a production or serious VPS/server incase anything happens, especially since this has not been thoroughly tested. I would recommend using a virtual machine connected to the internet or by renting a VPS per hour from a provider like Azure and running it there.
 
 ## Potential future plans
 - IP clients could get their own personalised VM instance by saving the VM state of that specific IP connection to the directory location, which means any changes or things they've done to the VM will persist across different connections and sessions.
