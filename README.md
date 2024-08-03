@@ -18,5 +18,26 @@ Work in progress! 🚧🚧👷
 - The VMs CPU usage is monitored, and VMs using too much CPU for an extended period of time will automatically be killed and preempted to prevent the system from locking up from clients running computationally heavy operations.
 - Although all care has been taken to ensure this is secure, I would personally not recommend using this on a production or serious VPS/server incase anything happens, especially since this has not been thoroughly tested. I would recommend using a virtual machine connected to the internet or by renting a VPS per hour from a provider like Azure and running it there.
 
+## Linux image
+You can either use my `qcow2` image and use it as is, modify it, or create your own to personalise the VM that is used for SSH connections.
+
+### Custom image configurations
+The following are instructions and recommendations on creating and configuring a custom and compatible image.
+
+*To avoid any doubt, PLEASE DO NOT ACCIDENTALLY CONFIGURE THESE ON YOUR MAIN SERVER AS THEY PURPOSEFULLY DEGRADE SECURITY! THESE ARE MEANT TO BE APPLIED TO YOUR VIRTUAL MACHINE INSTANCE ONLY.*
+
+
+#### Requirements for an image
+These are the only requirements for an image to be suitable as a honeypot:
+- sshd server must be installed and listening on port 22.
+  - `PermitRootLogin=yes` must be present in the `/etc/ssh/sshd_config` file.
+- Set your root password to `root123` (or to your configured value if applicable) by running `sudo -i` and `passwd` while logged in as root.
+- Finally, and after any configurations or changes you make to the image, boot the VM and wait for it to enter the login screen and create a snapshot of it under the name `snapshot` in Qemu by running `savevm snapshot` in the monitor. This is so VM instances can be rapidly started instead of waiting for the entire Linux kernel to boot each time which can take a while.
+
+#### Recommendations for custom image
+Not required, but some tweaks you can make which improve the VM:
+- Disable CPU mitigations for vulnerabilities as they are not needed in this case, and can improve performance of the VM and allow clients to potentially exploit these if the VM's emulated CPUs are vulnerable to them:
+  - Edit `/etc/default/grub` and add `mitigations=off` to the end of `GRUB_CMDLINE_LINUX`, then run `update-grub` for Ubuntu, or `grub2-mkconfig` for other distributions.
+
 ## Potential future plans
 - IP clients could get their own personalised VM instance by saving the VM state of that specific IP connection to the directory location, which means any changes or things they've done to the VM will persist across different connections and sessions.
