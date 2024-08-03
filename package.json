@@ -2,13 +2,17 @@
   "name": "ssh-honeypot",
   "version": "1.0.0",
   "description": "An SSH honeypot which spawns virtual machines to act as a vulnerable server.",
-  "main": "dist/index.ts",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jacek",
   "license": "ISC",
   "devDependencies": {
+    "@types/ssh2": "^1.15.0",
     "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "ssh2": "^1.15.0"
   }
 }
