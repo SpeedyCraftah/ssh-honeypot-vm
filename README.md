@@ -1,5 +1,5 @@
 # ssh-honeypot-vm
-An SSH honeypot for port scanners which emulates a fake SSH port, executes all commands in a virtual Ubuntu machine, and logs them in a file. I always see port scanners attempting to connect to my servers via SSH, and wanted to see what they would actually do if they were to successfully connect, preferably not at the expense of my server of data 🙂.
+An SSH honeypot for port scanners which emulates a fake SSH port, executes all commands in a virtual Ubuntu machine, and logs them in a file. I always see port scanners attempting to connect to my servers via SSH, and wanted to see what they would actually do if they were to successfully connect, preferably not at the expense of my server or data 🙂.
 
 This project was inspired by [this video](https://www.youtube.com/watch?v=tyKyLhcKgNo) on YouTube where Grant builds a simple SSH honeypot which logs all commands executed, but I wanted to expand on that and make it appear like an actual machine behind the SSH connection by using a pool of Qemu virtual machines and executing the commands inside on them.
 
