@@ -39,7 +39,7 @@ These are the only requirements for an image to be suitable as a honeypot:
 Not required, but some tweaks you can make which improve the VM:
 - Disable CPU mitigations for vulnerabilities as they are not needed in this case, and can improve performance of the VM and allow clients to potentially exploit these if the VM's emulated CPUs are vulnerable to them:
   - Edit `/etc/default/grub` and add `mitigations=off` to the end of `GRUB_CMDLINE_LINUX`, then run `update-grub` for Ubuntu, or `grub2-mkconfig` for other distributions.
-- To maximise the amount of VMs you can spawn and reduce the memory requirements, be smart with the distribution you choose and software you install on the image. For reference, I managed to get an Ubuntu instance running sshd to use only `71MiB` of memory (excluding caches) with little extra configuration.
+- To maximise the amount of VMs you can spawn and reduce the memory requirements, be smart with the distribution you choose and software you install on the image. For reference, I managed to get an Ubuntu instance running sshd to use only `71MiB` of memory (excluding caches) with little extra configuration. Do note Qemu also takes up a bit of memory, on a VM with `256MiB` of RAM and 2 cores, Qemu used an additional 62MiB, in total (256MiB + 62MiB) = 318MiB, I'd imagine this overhead will grow should you decide to add more cores. 
 
 ## Potential future plans
 - IP clients could get their own personalised VM instance by saving the VM state of that specific IP connection to the directory location, which means any changes or things they've done to the VM will persist across different connections and sessions.
