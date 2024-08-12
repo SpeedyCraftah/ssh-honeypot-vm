@@ -11,7 +11,12 @@ module.exports = {
         // Defines the keypair that the SSH server will broadcast to connecting clients.
         // You can use the default keys, but you should generate your own.
         // As a reminder, the default keys in this repository are now public and should not be used for any security or cryptographic purposes.
-        private_key_path: "./keys/public-key.pem"
+        private_key_path: "./keys/public-key.pem",
+
+        // The interface details the SSH server will listen on.
+        // If you would like to make it to anyone can connect on port 25, set host to "0.0.0.1" and port to 25.
+        host: "127.0.0.1",
+        port: 3000
     },
 
     vm: {
