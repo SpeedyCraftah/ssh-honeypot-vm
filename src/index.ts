@@ -22,6 +22,8 @@ interface Config {
         },
 
         private_key_path: string;
+        host: string;
+        port: number;
     },
 
     vm: {
@@ -101,7 +103,11 @@ export let config: Config;
 
     await discoverImages();
 
-    SSHServer.listen(3000, "127.0.0.1");
+    SSHServer.once("listening", () => {
+        logger.info(`SSH server is listening on port ${config.ssh.port} on interface ${config.ssh.host}`);
+    });
+    
+    SSHServer.listen(config.ssh.port, config.ssh.host);
 })();
 
 // Program end cleanup.
