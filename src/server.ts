@@ -40,8 +40,8 @@ export default new Server({
 
             logger.info("Creating VM instance for new client..");
 
-            const image = images.get("ubuntu");
-            if (!image) return;
+            const image = images.get(config.vm.image_name);
+            if (!image) throw new Error("VM image does not exist!");
 
             const vm = new VMInstance(image);
             // vmInstances.push(vm);

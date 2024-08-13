@@ -20,6 +20,9 @@ module.exports = {
     },
 
     vm: {
+        // The name of the image to use for virtual machines in the images directory.
+        image_name: "ubuntu",
+
         // The number of VM instances that can be active at any time, with connections surpassing this being rejected.
         max_instances: 1,
 

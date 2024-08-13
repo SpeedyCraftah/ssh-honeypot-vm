@@ -1,5 +1,5 @@
 import Pino from "pino";
-import { discoverImages } from "./images";
+import { discoverImages, images } from "./images";
 import { vmInstances } from "./vm-instance";
 import fs from "fs/promises";
 import SSHServer from "./server";
@@ -27,6 +27,7 @@ interface Config {
     },
 
     vm: {
+        image_name: string;
         max_instances: number;
         cpus: number;
         memory: string;
@@ -102,6 +103,12 @@ export let config: Config;
     });
 
     await discoverImages();
+
+    // Check if image set in config exists.
+    if (!images.has(config.vm.image_name)) {
+        logger.fatal(`Could not find the set image under the name "${config.vm.image_name}"! Is it present in the images directory?`);
+        process.exit(1);
+    }
 
     SSHServer.once("listening", () => {
         logger.info(`SSH server is listening on port ${config.ssh.port} on interface ${config.ssh.host}`);
