@@ -44,7 +44,7 @@ export default new Server({
             if (!image) return;
 
             const vm = new VMInstance(image);
-            vmInstances.push(vm);
+            // vmInstances.push(vm);
 
             new Client(client, info.ip, session, vm);
         });
